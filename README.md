@@ -26,7 +26,9 @@ https://github.com/Vitali-workspace/movies-explorer-frontend
 
 ## Примеры шаблонов запросов для Postman
 
-### Создание фильма (post): http://localhost:3000/movies
+### Создание фильма (post): 
+https://api.diplom.vitali.nomoredomains.club/movies
+
 <code>
 {"country": "USA",
 "director": "Funken",
@@ -41,17 +43,23 @@ https://github.com/Vitali-workspace/movies-explorer-frontend
 "nameEN": "Hanken"}
 </code>
 
-### Изменение данных пользователя (patch): http://localhost:3000/users/me
+### Изменение данных пользователя (patch): 
+https://api.diplom.vitali.nomoredomains.club/users/me
+
 <code>{"name":"Rename", "email": "testemail@gmail.com"}</code>
 
 ### Удаление фильма созданного пользователем (delete):
-http://localhost:3000/movies/185759318403756309353299
+https://api.diplom.vitali.nomoredomains.club/movies/185759318403756309353299
 
 ### Выход из аккаунта (post):
-http://localhost:3000/signout
+https://api.diplom.vitali.nomoredomains.club/signout
 
-### Вход в приложение (post): http://localhost:3000/signin
+### Вход в приложение (post): 
+https://api.diplom.vitali.nomoredomains.club/signin
+
 <code>{"email": "testemail@gmail.com", "password": "pass343456"}</code>
 
-### Регистрация нового пользователя (post): http://localhost:3000/signup
+### Регистрация нового пользователя (post): 
+https://api.diplom.vitali.nomoredomains.club/signup
+
 <code>{"name":"Newname", "email": "newemail@gmail.com", "password": "pass343456"}</code>
