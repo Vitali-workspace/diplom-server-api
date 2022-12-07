@@ -1,7 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
 const { regUrl } = require('../utils/constants');
 
-
 module.exports.validatorCreateMovie = celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
@@ -12,7 +11,7 @@ module.exports.validatorCreateMovie = celebrate({
     image: Joi.string().pattern(regUrl).required(),
     trailerLink: Joi.string().pattern(regUrl).required(),
     thumbnail: Joi.string().pattern(regUrl).required(),
-    movieId: Joi.string().required(),
+    movieId: Joi.number().unsafe().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
   }),
@@ -35,7 +34,7 @@ module.exports.validatorRegistration = celebrate({
 
 module.exports.validatorDeleteMovie = celebrate({
   params: Joi.object().keys(
-    { _id: Joi.string().required() },
+    { _id: Joi.string().hex().length(24).required() },
   ),
 });
 
