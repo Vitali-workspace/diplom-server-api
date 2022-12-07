@@ -8,7 +8,6 @@ const BadRequestError = require('../errors/BadRequestError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-
 module.exports.getUserInfo = (req, res, next) => {
   const { _id } = req.user;
   User.find({ _id })
@@ -20,7 +19,6 @@ module.exports.getUserInfo = (req, res, next) => {
     })
     .catch(next);
 };
-
 
 module.exports.updateUserInfo = (req, res, next) => {
   const { name, email } = req.body;
@@ -34,14 +32,13 @@ module.exports.updateUserInfo = (req, res, next) => {
         return;
       }
 
-      if (err.name === 'ValidationError') {
+      if (err.name === 'BadRequestError') {
         next(new BadRequestError('Ошибка в запросе'));
       } else {
         next(err);
       }
     });
 };
-
 
 module.exports.registration = (req, res, next) => {
   const { name, email, password } = req.body;
@@ -59,7 +56,7 @@ module.exports.registration = (req, res, next) => {
             return;
           }
 
-          if (err.name === 'ValidationError') {
+          if (err.name === 'BadRequestError') {
             next(new BadRequestError('Ошибка в запросе'));
           } else {
             next(err);
@@ -68,7 +65,6 @@ module.exports.registration = (req, res, next) => {
     })
     .catch(next);
 };
-
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
@@ -84,7 +80,6 @@ module.exports.login = (req, res, next) => {
     })
     .catch(next);
 };
-
 
 module.exports.logout = (req, res) => {
   res.cookie('jwt', '', { maxAge: 0, httpOnly: true });
