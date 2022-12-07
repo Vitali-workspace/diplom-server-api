@@ -3,7 +3,6 @@ const UnauthorizedError = require('../errors/UnauthorizedError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
-
 module.exports = (req, res, next) => {
   const devTokenSecret = 'dev-secret-key';
   const cookieWithToken = req.cookies.jwt;
@@ -15,7 +14,7 @@ module.exports = (req, res, next) => {
 
   try {
     payload = jwt.verify(cookieWithToken, NODE_ENV === 'production' ? JWT_SECRET : devTokenSecret);
-  } catch {
+  } catch (err) {
     return next(new UnauthorizedError('авторизация не пройдена'));
   }
 

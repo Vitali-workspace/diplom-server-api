@@ -13,23 +13,15 @@ const auth = require('./middlewares/auth');
 const PageNotFoundError = require('./errors/PageNotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, DATABASE_URL = 'mongodb://localhost:27017/moviesdb' } = process.env;
 const app = express();
 
-
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb');
+mongoose.connect(DATABASE_URL);
 
 app.use(requestLogger);
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// тестовая функция для падения приложения
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер упал');
-  }, 0);
-});
 
 app.use('/', authentication);
 app.use(auth);
