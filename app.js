@@ -1,13 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 require('dotenv').config();
 
 const routerUsers = require('./routes/users');
 const routerMovies = require('./routes/movies');
 const authentication = require('./routes/authentication');
+const requestCors = require('./middlewares/requestCors');
 const auth = require('./middlewares/auth');
 
 const PageNotFoundError = require('./errors/PageNotFoundError');
@@ -19,7 +20,8 @@ const app = express();
 mongoose.connect(DATABASE_URL);
 
 app.use(requestLogger);
-app.use(cookieParser());
+app.use(requestCors);
+// app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
