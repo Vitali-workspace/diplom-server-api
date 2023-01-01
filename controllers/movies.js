@@ -3,8 +3,13 @@ const ForbiddenError = require('../errors/ForbiddenError');
 const BadRequestError = require('../errors/BadRequestError');
 
 module.exports.getUserMovies = (req, res, next) => {
-  Movie.find({})
-    .then((listMovies) => res.send({ listMovies }))
+  const { _id } = req.user;
+
+  Movie.find({ owner: _id })
+    .then((listMovies) => {
+      const userMovies = listMovies.filter((film) => req.user._id === film.owner.toString());
+      return res.send(userMovies);
+    })
     .catch(next);
 };
 
