@@ -19,9 +19,9 @@ const app = express();
 mongoose.connect(DATABASE_URL);
 
 app.use(requestLogger);
-app.use(requestCors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(requestCors);
 
 app.use('/', authentication);
 app.use(auth);
