@@ -26,7 +26,7 @@ module.exports.validatorLogin = celebrate({
 
 module.exports.validatorRegistration = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).required(),
+    name: Joi.string().min(3).max(30).required(),
     email: Joi.string().invalid(null, '').required().email(),
     password: Joi.string().invalid(null, '').required(),
   }),
@@ -40,7 +40,7 @@ module.exports.validatorDeleteMovie = celebrate({
 
 module.exports.validatorUpdateUser = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).required(),
+    name: Joi.string().min(3).max(30).required(),
     email: Joi.string().invalid(null, '').email().required(),
   }),
 });
